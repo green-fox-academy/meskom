@@ -12,6 +12,7 @@ let lineCount: number = 6;
 //
 // The pyramid should have as many lines as lineCount is
 let line: string = '';
+
 for (let i: number = 1; i <= lineCount; i++) {
     line = '';
 

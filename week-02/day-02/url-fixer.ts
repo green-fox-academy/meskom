@@ -4,4 +4,6 @@
 
 let url: string = 'https//www.reddit.com/r/nevertellmethebots';
 
-console.log(url);
+
+console.log(url.replace('bots','odds'));
+console.log(url.replace('ttps','ttps:'));

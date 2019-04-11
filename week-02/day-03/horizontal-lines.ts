@@ -21,7 +21,7 @@ function goHorizontal (x: number, y: number) {
 
 let x: number = 10;
 let y: number = 2;
-goHorizontal(100, 200)
+//goHorizontal(100, 200)
 
 for (let i: number = 1; i <= 3; i++) {
    x = i * 10

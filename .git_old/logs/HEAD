@@ -1,0 +1,4 @@
+0000000000000000000000000000000000000000 6d64b8b738c9438d056f1d471d24514bf8d58176 meskom <mihaly.mesko@gmail.com> 1554825284 +0200	commit (initial): Initial commit
+6d64b8b738c9438d056f1d471d24514bf8d58176 95e90af7f33e30a41ffcce71346b3d119fee870e meskom <mihaly.mesko@gmail.com> 1554825659 +0200	commit: file relocated
+95e90af7f33e30a41ffcce71346b3d119fee870e 6d64b8b738c9438d056f1d471d24514bf8d58176 meskom <mihaly.mesko@gmail.com> 1554825841 +0200	undo: commit: file relocated
+6d64b8b738c9438d056f1d471d24514bf8d58176 1a40be5d3340c8009e0590fdd9e9de7489b9178c meskom <mihaly.mesko@gmail.com> 1554826110 +0200	commit: file relocated

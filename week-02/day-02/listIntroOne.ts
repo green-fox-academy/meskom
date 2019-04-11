@@ -1,3 +1,5 @@
+'use strick';
+
 let str: string[] = [];
 
 str.push('williams')
@@ -19,9 +21,4 @@ console.log(str)
 str.reverse().forEach (function(e) {
     console.log(e);
 });
-
-
-
-
-
 
