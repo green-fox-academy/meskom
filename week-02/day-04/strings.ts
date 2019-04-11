@@ -3,15 +3,16 @@
 // Given a string, compute recursively (no loops) 
 //a new string where all the lowercase 'x' chars have been changed to 'y' chars.
 
-let a: string[] = ['howxManyXxxx'];
 
-function XchnY (str:string): string {
-    if (str.indexOf('x') == -1 ){
-        return str
+function XchnY(str: string): string {
+
+    if (str.indexOf('x') !== -1) {
+       str = str.replace('x', 'y');
+        return XchnY(str)
     }
     else {
-        return str.replace('x', 'y')
+        return str
     }
 }
-    console.log (XchnY('xhnxnnxkjkjkjxjkjkx'))
+console.log(XchnY('xhnxnnxkjkjkjxjkjkx'))
 
