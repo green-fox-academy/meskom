@@ -16,4 +16,4 @@ function numFibAdd (n:number): number {
     return numFibAdd (n-1) + numFibAdd(n-2)
 }
 
-console.log ('sum: ' + numFibAdd(6))
+console.log ('sum: ' + numFibAdd(5))
