@@ -1,4 +1,4 @@
-'user '
+'use strict';
 
 class PostIt {
     backgroundColor: string;
@@ -20,8 +20,3 @@ console.log(`this is a(n) ${this.backgroundColor} with ${this.text +'  '+ this.t
 
 const myFirstPostit: PostIt = new PostIt('orange', 'Idea', 'blue');
 myFirstPostit.myPostIt();
-/*const myPostit: PostIt = new PostIt('orange', 'Idea', 'blue';
-const myPostit: PostIt = new PostIt('orange', 'Idea', 'blue';
-
-myFirstTree.gimmeinfo();
-*/
