@@ -7,10 +7,10 @@
 
 let nameToGreet: string = 'Greenfox';
 function greet(greets?: string) {
-    if (greets = undefined) {
+    if (greets == undefined) {
         greets = nameToGreet
     } 
-    console.log('Greetings, dear ', greets);
+    console.log('Greetings, dear ' + greets);
 }
 greet();
 
