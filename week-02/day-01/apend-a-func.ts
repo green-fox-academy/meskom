@@ -3,14 +3,14 @@
 // -  Write a function called `appendAFunc` that gets a string as an input,
 //    appends an 'a' character to its end and returns with a string
 // -  Print the result of `appendAFunc(typo)`
-let typo: string = 'Chinchill';
-function appendAFunc(b: string) {
-    let newString = b + 'a';
-    //return newString; 
-    console.log(newString);
-}
 
-appendAFunc(typo);
+let typo: string = 'Chinchill';
+
+function appendAFunc(b: string) {
+    return b + 'a' 
+    
+}
+console.log(appendAFunc(typo))
 
 
 
