@@ -6,9 +6,13 @@
 // -  Greet `nameToGreet`
 
 let nameToGreet: string = 'Greenfox';
-function greet(greets: string) {
+function greet(greets?: string) {
+    if (greets = undefined) {
+        greets = nameToGreet
+    } 
     console.log('Greetings, dear ', greets);
 }
-greet(nameToGreet);
+greet();
+
 
 

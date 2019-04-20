@@ -4,6 +4,8 @@
 // -  Log the result of `doubling(baseNum)` to the console
 
 let baseNum: number = 123;
-function doubling(a) { console.log(2 * a) }
-doubling(baseNum);
+function doubling(a:number) { 
+    return 2 * a
+ }
+console.log(doubling(baseNum));
 

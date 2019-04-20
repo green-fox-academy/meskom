@@ -8,4 +8,4 @@ function factorio(a: number): number {
         b = b * i;
     }; return b;
 }
-console.log(factorio(3));
+console.log(factorio(5));
