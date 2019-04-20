@@ -3,8 +3,9 @@
 
 function sum(a: number): number {
     let b: number = 0;
-    for (let i: number = 1; i <= a; i++) {
-        b = b + i;
-    }; return b;
+    for (let i: number = 0; i <= a; i++) {
+        b += i
+    } 
+    return b;
 }
 console.log(sum(5));
