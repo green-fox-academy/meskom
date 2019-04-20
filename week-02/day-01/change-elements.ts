@@ -4,7 +4,10 @@
 // -  Print the fourth element as a test
 
 let numList = [1, 2, 3, 8, 5, 6]
-numList.map(function (e) {
-    return numList[3] / 2;
-});
-console.log(numList);
+numList.map(e => {
+    if (e == 8) {
+        numList[numList.indexOf(e)] = 4
+    }
+})
+
+console.log(numList)
