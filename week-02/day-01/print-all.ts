@@ -6,6 +6,8 @@
 
 let integers = [4, 5, 6, 7]
 
-for (let i: number = 0; i <= integers.length; i++) {
+for (let i: number = 0; i < integers.length; i++) {
     console.log(integers[i])
 }
+
+integers.forEach(function(e){console.log(e)})
