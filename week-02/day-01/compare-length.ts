@@ -8,5 +8,5 @@ let firstList = [1, 2, 3];
 let secondList = [4, 5, 6, 7]
 
 if (secondList.length > firstList.length) {
-    console.log('secondList has more lements than firstList')
+    console.log('secondList has more elements than firstList')
 }

@@ -12,16 +12,20 @@
 // * size should depend on a variable
 // ** Relax, a matrix is just like an array
 let matrix: number[][] = [];
+let row: number = 3;
+let col: number = 3;
 
-for (let i: number = 0; i <= 3; i++) {
+
+for (let i: number = 0; i <= row; i++) {
     matrix[i] = [];
-    
-    for (let j: number = 0; j <= 3; j++) {
-        if (i + j == 3) {
-        matrix[i][j] = 1     }
+
+    for (let j: number = 0; j <= col; j++) {
+        if (i + j == row) {
+            matrix[i][j] = 1
+        }
         else {
-        matrix[i][j] = 0
-    }
+            matrix[i][j] = 0
+        }
     }
 }
 console.log(matrix)
