@@ -14,7 +14,7 @@ function subint(num: number, arr: number[]) {
     else {
         for (let i: number = 0; i <= arr.join('').length; i++) {
             
-            if (arr.join('')[i] == num.toString()) {
+            if (arr.join(',')[i] == num.toString()) {
                 arr1.push(i)
             }
         }

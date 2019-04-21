@@ -1,4 +1,5 @@
 let obj: any = {}
+console.log(Object.keys(obj).length == 0 ? 'empty' : 'not empty')
 
 obj[97]='a';
 obj[98]='b'; 	
