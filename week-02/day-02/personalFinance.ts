@@ -8,10 +8,13 @@ let cost: number[] = [500,1000, 1250, 175, 800, 120];
 // Which was our greatest expense?
 // Which was our cheapest spending?
 // What was the average amount of our spendings?
-let spend = cost.reduce(function(acc,a){return acc + a});
-console.log(spend);
+function finCalc (arr: number[]) {
+let spend = arr.reduce(function(acc,a){return acc + a});
+//console.log(spend);
 //console.log(Math.max(cost));
-console.log(cost.sort(function(a,b){return b -a})[0])
-console.log(cost.sort(function(a,b){return a -b})[0])
-console.log(spend/cost.length)
-
+let max = arr.sort(function(a,b){return b -a})[0]
+let min = arr.sort(function(a,b){return a -b})[0]
+let avg = spend/cost.length
+console.log( 'you spend: '+ spend + '\n max cost:' + max +' \n min cost: ' + min + '\n avg. cost: '+ avg )
+}
+finCalc(cost)
