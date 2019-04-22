@@ -16,7 +16,7 @@ function logIp(fn2: string) {
         arr.push(lines[i].split('   '))
         ip.push(arr[i][1])
     }
-    return ip
+    return Array.from(new Set (ip))
 }
 console.log(logIp('log.txt'));
 // Write a function that returns the GET / POST request ratio.
