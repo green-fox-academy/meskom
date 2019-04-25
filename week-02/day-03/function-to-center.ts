@@ -19,14 +19,14 @@ function goCenter(x: number, y: number) {
 }
 
 let a: number = 0;
-let b: number = 0;
+
 for (let i: number = 0; i <= 600; i = i + 20) {
 
     b = i
 
     goCenter(b, a)
 }
-let b: number = 0;
+b = 0;
 for (let i: number = 0; i <= 400; i = i + 20) {
 
     a = i

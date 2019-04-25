@@ -32,7 +32,7 @@ function ticTacResult(fn: string) {
         }
     }
     return "DRAW"
-    
+
 }
 console.log(ticTacResult('win-o.txt'))
 // Should print "O"

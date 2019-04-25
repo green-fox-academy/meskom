@@ -7,18 +7,17 @@
 //  Or returns an empty list if the number is not part of any of the numbers in the array
 
 function subint(num: number, arr: number[]) {
-    let arr1: any[] = []
-    if (arr.join('').indexOf(num.toString()) == -1) {
-        return []
-    }
-    else {
-        for (let i: number = 0; i <= arr.join('').length; i++) {
-            
-            if (arr.join(',')[i] == num.toString()) {
-                arr1.push(i)
+    let arr1: number[] = []
+    //if (arr.join('').indexOf(num.toString()) == -1) {
+      //  return []
+    
+        for (let i: number = 0; i <= arr.join(',').length; i++) {
+                let arr2 = arr[i].toString();             
+                if (arr2.indexOf(num.toString()) != -1 ) {
+                arr1.push(i);
             }
         }
-    }
+    
     return arr1
 }
 

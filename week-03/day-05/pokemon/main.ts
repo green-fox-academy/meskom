@@ -24,13 +24,12 @@ function initializePokemon(): Pokemon[] {
         new Pokemon('Kingler', 'water', 'fire')
     ];
 }
-pokemonOfAsh.forEach(function poki(element) {
-    if (element.isEffectiveAgainst(wildPokemon))
+pokemonOfAsh.forEach(function (element) {
+    if (element.isEffectiveAgainst(wildPokemon) == true)
     {
         console.log('I choose you, ' + element.name);
     }
 }
-
 );
 
 //pokemonOfAsh.isEffectiveAgainst()

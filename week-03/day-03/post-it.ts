@@ -10,7 +10,7 @@ constructor(backgroundColor: string, text: string, textColor: string){
         this.textColor = textColor;
     }
 myPostIt(): void {
-console.log(`this is a(n) ${this.backgroundColor} with ${this.text +'  '+ this.textColor} 
+console.log(`this is a(n) ${this.backgroundColor} post-it with ${this.text +'  '+ this.textColor} text 
 `);
 }
 }
@@ -18,5 +18,9 @@ console.log(`this is a(n) ${this.backgroundColor} with ${this.text +'  '+ this.t
 
  
 
-const myFirstPostit: PostIt = new PostIt('orange', 'Idea', 'blue');
-myFirstPostit.myPostIt();
+const my1stPostit: PostIt = new PostIt('orange', 'Idea', 'blue');
+my1stPostit.myPostIt();
+const my2ndPostit: PostIt = new PostIt('blue', 'Awesome', 'pink');
+my2ndPostit.myPostIt();
+const my3rdPostit: PostIt = new PostIt('orange', 'superb', 'blue');
+my3rdPostit.myPostIt();

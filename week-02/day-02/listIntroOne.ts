@@ -21,4 +21,4 @@ console.log(str)
 str.reverse().forEach(function (e) {
     console.log(e);
 });
-
+    

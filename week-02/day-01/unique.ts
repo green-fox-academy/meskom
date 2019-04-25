@@ -4,7 +4,6 @@
 function unique(arr: number[]) {
     arr = arr.sort()
     for (let i: number = 0; i < arr.length; i++) {
-
         if (arr[i] == arr[i + 1]) {
             arr.splice(i, 1)
         }

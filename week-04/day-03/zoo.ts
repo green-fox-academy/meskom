@@ -30,12 +30,12 @@ abstract class Animals {
 }
 class Bird extends Animals {
  
-    breedType: string = 'lying eggs'
+    breedType: string = 'lying eggs';
 
 }
 
 class Reptile extends Animals {
-    breedType: string = 'lying eggs'
+    breedType: string = 'lying eggs';
 
 }
 class Mammal extends Animals{

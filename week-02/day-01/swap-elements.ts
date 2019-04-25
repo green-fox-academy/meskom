@@ -8,12 +8,12 @@ abc.splice(0, 0, abc[2]);
 abc.splice(2, 0, abc[1]);
 abc.splice(1, 1);
 abc.splice(3, 1);
-function printParams(a: any[]) {
-    a.forEach(function (item: any, index: any) {
-        console.log(item);
-    });
-}
+// function printParams(a: any[]): void {
+//     a.forEach(function (item: any, index: any) {
+//         console.log(item);
+//     });
+// }
 
-console.log(printParams(abc))
+console.log(abc)
 
 

@@ -4,7 +4,6 @@
 
 let reversed: string = `.eslaf eb t/'ndluow ecnetnes siht ,dehctiws erew eslaf dna eurt fo sgninaem eht fI`;
 
-//let reversed: string = ' wtf';
 function reverse(str: string) {
     return str.split('').reverse().join('')
 }
