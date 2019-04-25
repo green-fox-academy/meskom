@@ -11,14 +11,14 @@ class Animal {
         
     }
   eat(): void {
-      this.hunger -- 
+      this.hunger -- ;
   }  
   drink(): void {
-      this.thrist --
+      this.thrist -- ;
   }
   play(): void {
-      this.thrist --
-      this.hunger --
+      this.thrist ++ ;
+      this.hunger ++ ;
   }
 }
   const animal1: Animal = new Animal();
