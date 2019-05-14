@@ -1,0 +1,21 @@
+ .container {
+    display: flex;
+    align-items: flex-end; 
+    justify-content: flex-end;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 600px;  
+    background: yellow;
+    flex-flow: row;
+    
+  }
+    .item {
+    list-style-type: none;
+    margin-left: 10px;
+    background: purple;
+    
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+  }
