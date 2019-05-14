@@ -1,0 +1,31 @@
+ .container {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    
+    
+}
+    
+  .item {
+    /* display: flex;
+    min-height: 150px;
+    width: 100%;
+    align-self: flex-start; */
+    
+}
+
+  .yellow {
+      background: yellow;
+      width: 800px;
+      height: 400px;
+
+  }
+  .purple {
+    background: purple;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    z-index: 1;
+  }
