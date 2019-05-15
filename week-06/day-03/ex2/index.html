@@ -23,17 +23,19 @@
         'use strict';
 
         const appleContent = document.querySelector('.apple');
-        const ballonContent = document.querySelector('.ballon');
+        const ballonContent = document.querySelector('.balloon');
         const catContent = document.querySelector('.cat');
         const animalsContent = document.querySelector('.animals');
+        //console.log('innerHTML:', animalsContent.innerHTML);
+        // console.log('textContent:', animalsContent.textContent);
+        // console.log('appleContent.innerHTML:', appleContent.innerHTML);
 
-        console.log('innerHTML:', animalsContent.innerHTML);
-        console.log('textContent:', animalsContent.textContent);
-        console.log('appleContent.innerHTML:', appleContent.innerHTML);
-        appleContent.innerHTML = animalsContant.innerHTML;
-
-
-
+        appleContent.innerHTML = animalsContent.innerText;
+        ballonContent.innerHTML = animalsContent.innerHTML;
+        catContent.innerHTML = animalsContent.innerText;
+        
+        console.log(animalsContent.innerHTML);
+        console.log(appleContent.innerHTML)
     </script>
 </body>
 
