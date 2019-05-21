@@ -42,29 +42,38 @@
     </section>
 
     <script>
-        let sectionElement = document.getElementsByTagName('section')[0]
-        const createOneDiv = (num) => {
-            let oneDiv = document.createElement('div')
-            oneDiv.textContent = num
-            sectionElement.appendChild(oneDiv)
-
+        function isPrime(num) {
+            for (var i = 2; i < num; i++)
+                if (num % i === 0) return false;
+            return num > 1;
         }
-        const createHundredDiv = () => {
-            for (let i = 1; i <= 100; i++) {
-                createOneDiv(i);
+
+            let sectionElement = document.getElementsByTagName('section')[0]
+            const createOneDiv = (num) => {
+                let oneDiv = document.createElement('div')
+                oneDiv.textContent = num
+                sectionElement.appendChild(oneDiv)
             }
-        }
-        const isPrime = (num) => {
-            for (let i = 2; i <= 100; i++) {
-                if (num % i === 0) {
-
-                    createOneDiv(i + 'not prime');
+            const createHundredDiv = () => {
+                for (let i = 1; i <= 100; i++) {
+                    createOneDiv(i);
                 }
-                createOneDiv(i + 'not prime');
             }
-        }
-        
-        isPrime()
+            const changeBackgroundColor = (element) => {
+                if (isPrime(element.innerHTML)) {
+                    element.classList.add('prime');
+                } else {
+                    element.classList.add('not-prime');
+                }
+            }
+
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    changeBackgroundColor(sectionElement.children[i]);
+                }, i * 100);
+            }
+            createHundredDiv();
+            changeBackgroundColor();
 
 
           // 1: generate 100 divs to the <section> element and add index numbers to it as the element's textContent
