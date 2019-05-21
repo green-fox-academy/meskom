@@ -50,12 +50,22 @@
 
         }
         const createHundredDiv = () => {
-            for (let i = 2; i <= 100; i++) {
-
+            for (let i = 1; i <= 100; i++) {
                 createOneDiv(i);
             }
         }
-        createHundredDiv()
+        const isPrime = (num) => {
+            for (let i = 2; i <= 100; i++) {
+                if (num % i === 0) {
+
+                    createOneDiv(i + 'not prime');
+                }
+                createOneDiv(i + 'not prime');
+            }
+        }
+        
+        isPrime()
+
 
           // 1: generate 100 divs to the <section> element and add index numbers to it as the element's textContent
           // 2: Create a function that adds a 'not-prime' class to a div if it's not a prime and 'prime' if it is
