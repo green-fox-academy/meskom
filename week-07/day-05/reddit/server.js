@@ -54,7 +54,16 @@ app.post('/posts', (req, res) => {
     );
   });
  app.put('/<id>/upvote', (req, res) => {
-   conn.query(`SELECT * FROM posts WHERE ID = ?? SET score = score + 1`)}) 
+   conn.query(`UPDATE posts WHERE id = req.params.id SET score = score + 1;`) ,
+   (err, rows) => {
+    if (err) {
+        console.log(err.toString());
+        return;
+    }
+    console.log('score successfully updated');
+    res.status(201).send(rows);
+}});
+
 
 
 //conn.end();
