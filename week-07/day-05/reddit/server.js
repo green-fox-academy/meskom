@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 let mysql = require('mysql');
+const table = 'posts';
 
 let conn = mysql.createConnection({
     host: 'localhost',
@@ -22,9 +23,9 @@ conn.connect(function (err) {
 });
 
 app.use(express.json());
-app.get('/posts', function(req, res) {
+app.get('/posts', function (req, res) {
     let input = 'SELECT * FROM posts;'
-    conn.query(input, function(err, rows) {
+    conn.query(input, function (err, rows) {
         if (err) {
             console.log(err.toString());
             res.status(200).send('Database error');
@@ -34,5 +35,25 @@ app.get('/posts', function(req, res) {
 
     });
 });
+// app.post('/posts',(req,res) => {
+//     let title = req.body.title; 
+//     let url = req.body.url;
+//     req.body.send
+
+// });
+app.post('/posts', (req, res) => {
+    conn.query(`INSERT INTO posts (title, url) VALUES ("${req.body.title}", "${req.body.url}");`,
+        (err, rows) => {
+            if (err) {
+                console.log(err.toString());
+                return;
+            }
+            console.log('data successfully added to database');
+            res.status(201).send(rows);
+        }
+    );
+  });
+
+
 //conn.end();
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
