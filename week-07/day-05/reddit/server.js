@@ -53,10 +53,8 @@ app.post('/posts', (req, res) => {
         }
     );
   });
- app.post('/<id>/upvote', (req, res) => {
-   conn.query(`SELECT * FROM posts WHERE ID = ... SET score = score + 1;) 
-
- }) 
+ app.put('/<id>/upvote', (req, res) => {
+   conn.query(`SELECT * FROM posts WHERE ID = ?? SET score = score + 1`)}) 
 
 
 //conn.end();
