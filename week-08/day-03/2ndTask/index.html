@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="./style.css" /> -->
+    <title>F O R M S </title>
+</head>
+
+<body>
+    <div class="main-container">
+        <h1 class="main-title">FORMS</h1>
+        <form action="/send" method="POST">
+            <h1> What is your favourite pet? </h1>
+            <div class="animal">
+                <label for="dog">dog</label>
+                <input type="radio" name="animal" value="dog" id="dog" />
+                <label for="cat">cat</label>
+                <input type="radio" name="animal" value="cat" id="cat" />
+                <label for="">goldfish</label>
+                <input type="radio" name="animal" value="goldfish" id="goldfish" />
+            </div>
+            <h1> Do you want to sign up for cat facts? </h1>
+            <div class="facts">
+                <label for="yes">yes</label>
+                <input type="radio" name="yn" value="yes" id="yes" />
+                <label for="no">no</label>
+                <input type="radio" name="yn" value="no" id="no" />
+            </div>
+            <br>
+            <br>
+            <input type="button" value="I love cats" disabled=true id ="loveCat"/>
+            <input type="button" value="sign up" disabled=true  id ="signUp"/>
+            <script>
+                //document.querySelectorAll("button")[0].disabled = true;   
+                // let arr = document.querySelectorAll(".animal ");
+
+                console.log(".animal")
+                let dog = document.querySelector("#dog")
+                let cat = document.querySelector("#cat")
+                let loveCat = document.querySelector("#loveCat")
+                let yes = document.querySelector('#yes')
+                let no = document.querySelector('#no')
+                 console.log(dog.checked)
+                // console.log(loveCat)
+                //loveCat.disabled = false;
+                dog.addEventListener('click', () => {
+                if (dog.checked || cat.checked){
+                    signUp.disabled = false;
+                }})
+                cat.addEventListener('click', () => {
+                if (dog.checked || cat.checked){
+                    signUp.disabled = false;
+                }})
+                yes.addEventListener('click', () => {
+                if (yes.checked){
+                    loveCat.disabled = false;
+                }})
+                let signUp = document.querySelector('#signUp')
+                signUp.addEventListener('click', () => {
+                alert(`Thank you, you've successfully signed up for cat facts`)
+                })
+                let viktor = document.querySelector("#goldfish")
+                viktor.addEventListener('click', () => {
+                if (!no.checked || !yes.cheked){
+                    loveCat.disabled = true;
+                    signUp.disabled = false;
+
+                }})
+
+
+
+
+            </script>
+
+        </form>
+    </div>
+</body>
+
+</html>

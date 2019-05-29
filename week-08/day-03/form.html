@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>ACCOUNT LOGIN</title>
+  </head>
+  <body>
+    <div class="main-container">
+      <h1 class="main-title">ACCOUNT LOGIN</h1>
+      <form action="/send" method="POST">
+        <label for="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          placeholder="please type your username here"
+          maxlength="10"
+          autofocus required
+        />
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password"  placeholder="please type your password here"/>
+        <input type="submit" value="Login!" />
+        <div class= "link"><a href="#" > Forgot password? </a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
