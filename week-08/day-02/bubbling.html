@@ -60,23 +60,20 @@
             let btn = document.querySelectorAll('button');
 
             //document.query('.img-inspector').style.up = "+10";
-            for (i=0; i<btn.length; i++){
-                if (i===0) {
-                    img.style.backgroundPositionY = '10px';
-                }
-            }
-
-        document.querySelectorAll
-        const zoomIn = document.querySelector("in")
-
-        zoomIn.addEventListener('click', moveup);
-
-        //-------
+            // for (i=0; i<btn.length; i++){
+            //     if (i===0) {
+            //         img.style.backgroundPositionY = '10px';
+            //     }
+            // }
+        //const zoomIn = document.querySelector("in")
+        //zoomIn.addEventListener('click', moveup);
+        let y = 0;
         function moveup() {
-            document.querySelector('.img-inspector').style.backgroundPositionY += '-10px'
-            //document.query('.img-inspector').style.up = "+10";
+            
+            y-=20;
+            img.style.backgroundPositionY = y + 'px';
         }
-        const up = document.querySelector("up")
+        const up = document.querySelectorAll("nav")[0]
 
         up.addEventListener('click', moveup);
 
