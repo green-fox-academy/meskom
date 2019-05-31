@@ -55,28 +55,40 @@
     </script>-->
 
     <script>
-        
-            let img  = document.querySelector('.img-inspector');
-            let btn = document.querySelectorAll('button');
 
-            //document.query('.img-inspector').style.up = "+10";
-            // for (i=0; i<btn.length; i++){
-            //     if (i===0) {
-            //         img.style.backgroundPositionY = '10px';
-            //     }
-            // }
-        //const zoomIn = document.querySelector("in")
-        //zoomIn.addEventListener('click', moveup);
+        let img = document.querySelector('.img-inspector');
+        let btn = document.querySelectorAll('button');
         let y = 0;
+        let z = 200;
+
         function moveup() {
-            
-            y-=20;
+            y -= 10;
             img.style.backgroundPositionY = y + 'px';
         }
-        const up = document.querySelectorAll("nav")[0]
+        function movedown() {
+            y += 10;
+            img.style.backgroundPositionY = y + 'px';
+        }
+        function zoomin() {
+            z = z * 1.10;
+            img.style.backgroundSize = z +'%' ;
+        }
+        function zoomout() {
+            z = z * 0.9;
+            img.style.backgroundSize = z +'%' ;
+        }
+
+
+        const up = btn[0]
+        const down = btn[1]
+        const zoomIn = btn[4]
+        const zoomOut = btn[5]
+
 
         up.addEventListener('click', moveup);
-
+        down.addEventListener('click', movedown);
+        zoomIn.addEventListener('click', zoomin);
+        zoomIn.addEventListener('click', zoomin);
     </script>
 </body>
 
