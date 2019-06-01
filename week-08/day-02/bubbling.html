@@ -60,6 +60,7 @@
         let btn = document.querySelectorAll('button');
         let y = 0;
         let z = 200;
+        let x = 0;
 
         function moveup() {
             y -= 10;
@@ -69,26 +70,37 @@
             y += 10;
             img.style.backgroundPositionY = y + 'px';
         }
+        function moveleft() {
+            x += 10;
+            img.style.backgroundPositionX = x + 'px';
+        }
+        function moveright() {
+            x -= 10;
+            img.style.backgroundPositionX = x + 'px';
+        }
+  
         function zoomin() {
-            z = z * 1.10;
-            img.style.backgroundSize = z +'%' ;
+            z = z * 1.20;
+            img.style.backgroundSize = z + '%';
         }
         function zoomout() {
-            z = z * 0.9;
-            img.style.backgroundSize = z +'%' ;
+            z = z * 0.80;
+            img.style.backgroundSize = z + '%';
         }
-
 
         const up = btn[0]
         const down = btn[1]
+        const left = btn[2]
+        const right = btn[3]
         const zoomIn = btn[4]
         const zoomOut = btn[5]
 
-
         up.addEventListener('click', moveup);
         down.addEventListener('click', movedown);
+        left.addEventListener('click', moveleft);
+        right.addEventListener('click', moveright);
         zoomIn.addEventListener('click', zoomin);
-        zoomIn.addEventListener('click', zoomin);
+        zoomOut.addEventListener('click', zoomout);
     </script>
 </body>
 
