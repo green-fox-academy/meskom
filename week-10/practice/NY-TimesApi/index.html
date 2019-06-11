@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <div class="list">
+
+    </div>
+
+</head>
+
+<body>
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=apollo11&api-key=3RHoD4hQBAB0GbxBS43i1vtPR9R7Getk')
+        xhr.send();
+        xhr.onload = data => {
+            //let info = JSON.parse(data.target.response)
+            //console.log(info);
+            let info = (JSON.parse(xhr.responseText));
+            //let doc = [];
+            let doc = info.response.docs
+            console.log(doc);
+            console.log(doc.lenght);//?? not an array???
+            for (let i = 0; i < 3; i++) {
+                let p = document.createElement("p")
+                document.querySelector('.list').appendChild(p);
+                let div1 = document.createElement("h1");
+                div1.innerHTML = info.response.docs[i].headline.main;
+                p.appendChild(div1)
+                let div2 = document.createElement("div");
+                div2.innerHTML = info.response.docs[i].snippet;
+                p.appendChild(div2)
+                let div3 = document.createElement("div");
+                div3.innerHTML = info.response.docs[i].pub_date;
+                p.appendChild(div3)
+            }
+        }
+    </script>
+</body>
+
+</html>

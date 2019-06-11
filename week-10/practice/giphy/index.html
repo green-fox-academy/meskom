@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class='gif'>
+
+    </div>
+
+    <script>
+        let httpRequest = new XMLHttpRequest();
+        httpRequest.open('GET', 'http://api.giphy.com/v1/gifs/search?q=chicken&api_key=s4fukF0uyflz9nObXqnAfXzJKcpq7FBU&limit=10', true);
+        httpRequest.send();
+        httpRequest.onload = data =>{
+            
+            let info = JSON.parse(data.target.response);
+            getImg(info ,10)
+        };
+        function getImg (info,num) {
+            let img = document.querySelector('.gif')
+            console.log(img);
+
+            for (let i = 0 ; i < num; i++ ){
+                img.appendChild(document.createElement('IMG')).src = info.data[i].images.downsized_medium.url;
+            }
+        }
+
+        // let httpRequest = new XMLHttpRequest();
+        // httpRequest.open('GET', 'http://api.giphy.com/v1/gifs/search?q=chicken&api_key=s4fukF0uyflz9nObXqnAfXzJKcpq7FBU&limit=10', true);
+        // httpRequest.send();
+        // httpRequest.onload = data => {
+        //     const gif = JSON.parse(data.target.response);
+        //     getImages(gif, 10);
+        // };
+        // function getImages(info, length) {
+        //     for (let i = 0; i < length; i++) {
+        //         document.getElementsByTagName("DIV")[0].appendChild(document.createElement("IMG")).src = info.data[i].images.downsized_medium.url;
+        //     }
+        // }
+
+    </script>
+</body>
+
+</html>
