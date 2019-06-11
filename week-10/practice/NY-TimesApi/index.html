@@ -23,8 +23,8 @@
             let info = (JSON.parse(xhr.responseText));
             //let doc = [];
             let doc = info.response.docs
-            console.log(doc);
-            console.log(doc.lenght);//?? not an array???
+            console.log(info);
+            console.log(doc.lenght);//?? not an array??? array-like object..
             for (let i = 0; i < 3; i++) {
                 let p = document.createElement("p")
                 document.querySelector('.list').appendChild(p);

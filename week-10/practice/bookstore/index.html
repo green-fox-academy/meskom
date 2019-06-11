@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <script>
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', '/title')
+        xhr.send();
+        xhr.onload = data => {
+            let bookInfo = data.target.response;
+            console.log(bookInfo);
+            console.log(doc.lenght);//?? not an array??? array-like object..
+            //for (let i = 0; i < 3; i++) {
+
+    </script>
+</body>
+
+</html>
