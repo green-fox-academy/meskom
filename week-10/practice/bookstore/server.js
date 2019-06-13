@@ -44,69 +44,33 @@ app.get('/books', (req, res) => {
     INNER JOIN publisher ON book_mast.pub_id = publisher.pub_id `
     if (req.query.category) {
         query += `WHERE cate_descrip = ${req.query.category}`
-
-        conn.query((query), (err, result) => {
-
-            if (err) {
-                console.log(err);
-                res.status(500).send('Sql error!');
-            } else {
-                console.log(result)
-                res.status(200).send(result);
-            }
-        });
     }
     if (req.query.publisher) {
         let pub = req.query.publisher
         query += `WHERE pub_name LIKE "%${pub}%"`;
-
-        conn.query((query), (err, result) => {
-
-            if (err) {
-                console.log(err);
-                res.status(500).send('Sql error!');
-            } else {
-                console.log(result)
-                res.status(200).send(result);
-            }
-        });
     }
     if (req.query.plt) {
         query += `WHERE book_price < ${req.query.plt}`
-
-        conn.query((query), (err, result) => {
-
-            if (err) {
-                console.log(err);
-                res.status(500).send('Sql error!');
-            } else {
-                console.log(result)
-                res.status(200).send(result);
-            }
-        });
     }
     if (req.query.pgt) {
         query += `WHERE book_price > ${req.query.pgt}`
-
-        conn.query((query), (err, result) => {
-
-            if (err) {
-                console.log(err);
-                res.status(500).send('Sql error!');
-            } else {
-                console.log(result)
-                res.status(200).send(result);
-            }
-        });
     }
-});
+    conn.query(query, (err, result) => {
 
+        if (err) {
+            console.log(err);
+            res.status(500).send('Sql error!');
+        } else {
+            console.log(result)
+            res.status(200).send(result);
+        }
+    });
+});
 
 
 app.get('/test', (req, res) => {
     res.sendFile(path.join(__dirname, 'public/index.html'));
 });
-
 
 app.listen(port, () => console.log(`listening on port ${port}`))
 
