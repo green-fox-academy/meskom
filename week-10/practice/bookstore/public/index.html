@@ -8,36 +8,51 @@
     <title>bookstore</title>
 
 </head>
+
 <body>
     <h1>Bookstore!</h1>
     <table id="book-table" style="width:100%">
-            <tr>
-                    <th>title</th>
-                    <th>author</th>
-                    <th>category</th>
-                    <th>publisher</th>
-                    <th>price</th>
-                  </tr>
+        <tr>
+            <th>title</th>
+            <th>author</th>
+            <th>category</th>
+            <th>publisher</th>
+            <th>price</th>
+        </tr>
     </table>
     <script>
-        let xhr = new XMLHttpRequest();
+
+        //let url = 'http://localhost:3001/books${options}';
         let url = 'http://localhost:3001/books';
-        xhr.open('GET', url,true);
-        xhr.setRequestHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin','*');
+        const urlParams = new URLSearchParams(window.location.search);
+        const categoryParam = urlParams.get('category');
+        if (categoryParam) {
+            url += `?category=${categoryParam}`
+        }
+        const pubParam = urlParams.get('publisher');
+        if (pubParam) {
+            url += `?publisher=${pubParam}`
+        }
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        //
+        xhr.setRequestHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin', '*');
+        //let option = `?category="Technology"`
         xhr.onload = data => {
             // let bookInfo = JSON.parse(xhr.responseText);
-            //console.log(data);
+            console.log(data);
             let info = JSON.parse(data.target.response);
-            //console.log(info);
+            console.log(info);
             let table = document.querySelector('#book-table')
             console.log(info[0].book_name);
-            
+
             for (let i = 0; i < info.length; i++) {
                 let row = document.createElement('tr');
+
                 let book_name = document.createElement('td');
                 book_name.innerText = (info[i].book_name);
                 row.appendChild(book_name);
-                
+
                 let author_name = document.createElement('td');
                 author_name.innerText = info[i].aut_name;
                 row.appendChild(author_name);
