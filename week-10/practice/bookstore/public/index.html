@@ -5,34 +5,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>bookstore</title>
 
 </head>
-
 <body>
     <h1>Bookstore!</h1>
     <table id="book-table" style="width:100%">
+            <tr>
+                    <th>title</th>
+                    <th>author</th>
+                    <th>category</th>
+                    <th>publisher</th>
+                    <th>price</th>
+                  </tr>
     </table>
     <script>
         let xhr = new XMLHttpRequest();
-        xhr.onload = () => {
+        let url = 'http://localhost:3001/books';
+        xhr.open('GET', url,true);
+        xhr.setRequestHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin','*');
+        xhr.onload = data => {
             // let bookInfo = JSON.parse(xhr.responseText);
-            // console.log(bookInfo);
-            let data = JSON.parse(data.target.response);
-            console.log(data);
+            //console.log(data);
+            let info = JSON.parse(data.target.response);
+            //console.log(info);
             let table = document.querySelector('#book-table')
+            console.log(info[0].book_name);
             
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0; i < info.length; i++) {
                 let row = document.createElement('tr');
                 let book_name = document.createElement('td');
-                book_name.innerText = data[i].book_name;
+                book_name.innerText = (info[i].book_name);
                 row.appendChild(book_name);
+                
+                let author_name = document.createElement('td');
+                author_name.innerText = info[i].aut_name;
+                row.appendChild(author_name);
+
+                let category_name = document.createElement('td');
+                category_name.innerText = info[i].cate_descrip;
+                row.appendChild(category_name);
+
+                let publisher_name = document.createElement('td');
+                publisher_name.innerText = info[i].pub_name;
+                row.appendChild(publisher_name);
+
+                let book_prize = document.createElement('td');
+                book_prize.innerText = info[i].book_price;
+                row.appendChild(book_prize);
+
+                table.appendChild(row);
             }
         }
-        let url = 'http://localhost:3000/allinfos';
-        xhr.open('GET', url, true);
-        xhr.setRequestHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin','*');
-        xhr.send(null);
+        xhr.send()
 
     </script>
 </body>
