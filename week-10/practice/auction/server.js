@@ -13,8 +13,6 @@ let conn = mysql.createConnection({
     password: 'password',
     database: 'auction'
 });
-
-
 app.use(express.json());
 
 app.get('/api/items', (req, res) => {
@@ -32,7 +30,6 @@ app.post('/api/items/:id/bids', (req, res) => {
             res.status(500).send('DB error!');
             return
         }
-        //console.log(row)
         if (row[0].highest_bid >= info.amount) {
             let message = { message: "Your bid is below the highest bid!" }
             res.send(message)
@@ -42,7 +39,6 @@ app.post('/api/items/:id/bids', (req, res) => {
              let message = { message: "The auction is over!" }
              res.send(message)
          }
-
          else {
             conn.query(`UPDATE auction SET highest_bid = ?, bidders_name = ? WHERE ID = ? `,
                 [info.amount, info.name, id], (err, status) => {
@@ -54,7 +50,6 @@ app.post('/api/items/:id/bids', (req, res) => {
                     }
                 });
         };
-
     })
 });
 
