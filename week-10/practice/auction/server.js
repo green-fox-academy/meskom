@@ -33,8 +33,9 @@ app.post('/api/items/:id/bids', (req, res) => {
         if (row[0].highest_bid >= info.amount) {
             let message = { message: "Your bid is below the highest bid!" }
             res.send(message)
+            return
         }
-        console.log (row[0].expire_date, new Date())
+        //console.log (row[0].expire_date, new Date())
         if (row[0].expire_date < new Date()) {
              let message = { message: "The auction is over!" }
              res.send(message)
