@@ -38,7 +38,6 @@ form.addEventListener('submit', (e) => {
         name: document.querySelector('#bidder').value,
         amount: document.querySelector('#amount').value,
     }
-    console.log(sendinfo);
     let itemsid = document.querySelector("#auction-items").value
     console.log(itemsid);
     let xhr = new XMLHttpRequest
@@ -46,22 +45,17 @@ form.addEventListener('submit', (e) => {
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = data => {
         if (data.target.status === 200) {
-            console.log('ok')
             let info = JSON.parse(data.target.response);
-            console.log(info);
             let message = document.querySelector('.message');
             message.innerHTML = info.message;
             
             if (info.message == 'Auction is over!' || info.message === 'Successful!') {
-                // document.querySelector("#bidder").innerHTML='';
-               // document.querySelector("#amount").innerHTML='';
-               console.log('refresh') 
                location.reload(); 
 
             }
 
         }
-        else { console.log('error van') }
+        else { console.log('error') }
 
     }
     xhr.send(JSON.stringify(sendinfo));
