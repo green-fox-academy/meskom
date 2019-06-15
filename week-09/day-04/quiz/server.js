@@ -1,59 +1,46 @@
+const mysql = require('mysql');
 const express = require('express');
-const mySql = require('mysql');
+const app = express();
+const port = 3001;
 const path = require('path');
 
-const app = express();
-app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-const PORT = 8080;
-const conn = mySql.createConnection({
+let conn = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: 'password',
     database: 'quiz'
 });
 
-conn.connect((err) => {
-    if (err) {
-        console.log(`MySql connection error!`, err);
-    } else {
-        console.log('MySQL connection estabilished!')
-    }
-});
+app.use(express.json());
 
 app.get('/game', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/game.html'));
-});
-
+    res.sendFile(path.join(__dirname, 'public/game.html'));
+})
 app.get('/questions', (req, res) => {
-    res.sendFile(path.join(__dirname, '/public/questions.html'));
-});
-
-
+    res.sendFile(path.join(__dirname, 'public/questions.html'));
+})
 app.get('/api/game', (req, res) => {
-    conn.query(`SELECT id, question FROM questions ORDER BY rand(); `, (err, rows) => {
+    conn.query(`SELECT * FROM questions ORDER BY rand()`, (err, rows) => {
         if (err) {
-            console.log(err.toString());
-            res.status(500).send('Database error');
+            res.status(500).send('DB error');
             return;
         }
-        conn.query(`SELECT * FROM answers WHERE question_id =?`, [rows[0].id], (err, ans) => {
+
+        conn.query('SELECT * FROM answers WHERE question_id = ? ', [rows[0].id], (err, ans) => {
             if (err) {
-                console.log(err.toString());
-                res.status(500).send('Database error');
+                res.status(500).send('DB error');
                 return;
             }
-            console.log(ans);
-            let qa = {};
-            qa = rows[0];
-            qa.answers = ans
-            console.log(qa);
-            res.send(qa);
-        });
-    });
-});
+
+            rows[0].answers = ans
+            res.send(rows[0]);
+
+        })
+    })
+})
 
 app.get('/api/questions', (req, res) => {
     conn.query(`SELECT * FROM questions; `, (err, ques) => {
@@ -65,23 +52,54 @@ app.get('/api/questions', (req, res) => {
         res.send(ques);
     });
 });
+// app.post('/api/questions', (req, res) => {
+//     console.log(req.body)
+//     let newQA = req.body
+//     console.log(newQA);
+//     conn.query(`INSERT INTO questions (question) VALUES (?)`,[newQA.question], (err, rows) => {
+//         if (err) {
+//             console.log(err.toString());
+//             res.status(500).send('DB error');
+//             return;
+//         }
+//         console.log(rows)
+        
+//         conn.query(`INSERT INTO answers (question_id,answer,is_correct) VALUES {(?,?,?),(?,?,?),(?,?,?),(?,?,?)]`,
+//             [
+//                 (questionInsertId, newQA.answers[0].answer, newQA.answers[0].is_correct),
+//                 (questionInsertId, newQA.answers[1].answer, newQA.answers[1].is_correct),
+//                 (questionInsertId, newQA.answers[2].answer, newQA.answers[2].is_correct),
+//                 (questionInsertId, newQA.answers[3].answer, newQA.answers[3].is_correct)
+//             ],
+//             (err, qa) => {
+//                 if (err) {
+//                     console.log(err.toString());
+//                     res.status(500).send('DB error');
+//                     return;
+//                 }
+//                 console.log(qa);
+//                 res.sendStatus(200);
+//             })
+//     })
+// })
 
 app.post('/api/questions', (res, req) => {
-    let newqa = {}
-    newqa = req.body;
+    
+    let newqa = req.body;
     console.log(newqa);
-    conn.query(`INSERT INTO questions (question) VALUES (?)`,[newqa.question], (err, rows) => {
+    conn.query(`INSERT INTO questions (question) VALUES (?)`,[newqa.question], (err, result) => {
         if (err) {
             console.log(err.toString());
             res.status(500).send('Database error');
             return;
         }
-        console.log(rows[0].id);
+        else {
+        const questionInsertId = result.id
         conn.query(`INSERT INTO answers (question_id,answer,is_correct) VALUES (?,?,?),(?,?,?),(?,?,?),(?,?,?)`,
-        [rows[0].id, newqa.answers[0].answer, newqa.answer[0].is_correct],
-        [rows[0].id, newqa.answers[1].answer, newqa.answer[1].is_correct],
-        [rows[0].id, newqa.answers[2].answer, newqa.answer[2].is_correct],
-        [rows[0].id, newqa.answers[3].answer, newqa.answer[3].is_correct], 
+        [questionInsertId, newqa.answers[0].answer, newqa.answer[0].is_correct],
+        [questionInsertId, newqa.answers[1].answer, newqa.answer[1].is_correct],
+        [questionInsertId, newqa.answers[2].answer, newqa.answer[2].is_correct],
+        [questionInsertId, newqa.answers[3].answer, newqa.answer[3].is_correct], 
         (err, rows) => {
             if (err) {
                 console.log(err.toString());
@@ -91,29 +109,34 @@ app.post('/api/questions', (res, req) => {
             console.log(rows);
             res.status(200).send;
         });
+    }
     });
 });
-app.delete('api/questions/:id', (res, req) => {
+
+app.delete('/api/questions/:id', (res, req) => {
     let idp = req.params.id;
-    conn.query(`DELETE FROM questions WHERE id = ?`, [idp], (err, del) => {
+    console.log(idp);
+    conn.query(`DELETE FROM questions WHERE id = ?`, [idp], (err, del_q) => {
         if (err) {
-            res.status(500).send('Database error');
+            console.log(err.toString());
+            res.send('Database error');
             return;
         }
-        console.log(del);
-        res.send.status(200);
-    })
-    conn.query(`DELETE FROM answers WHERE question_id = ?`, [idp], (err, del) => {
-        if (err) {
-            res.status(500).send('Database error');
-            return;
+        else {
+            conn.query(`DELETE FROM answers WHERE question_id = ?`, [idp], (err, del_a) => {
+                if (err) {
+                    console.log(err.toString());
+                    res.send('Database error');
+                    return;
+                } else {
+                    //console.log(del_a);
+                    res.send('deleted Q&A')
+                }
+            });
         }
-        console.log(del);
-        res.send.status(200);
-
     })
 });
 
-app.listen(PORT, () => {
-    console.log(`Server started, listening on port ${PORT}!`);
-});
+
+app.listen(port, () => console.log(`listening on port ${port}`))
+
