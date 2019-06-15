@@ -83,10 +83,8 @@ app.get('/api/questions', (req, res) => {
 //     })
 // })
 
-app.post('/api/questions', (res, req) => {
-    
+app.post('/api/questions', (req, res) => {
     let newqa = req.body;
-    console.log(newqa);
     conn.query(`INSERT INTO questions (question) VALUES (?)`,[newqa.question], (err, result) => {
         if (err) {
             console.log(err.toString());
@@ -94,12 +92,17 @@ app.post('/api/questions', (res, req) => {
             return;
         }
         else {
-        const questionInsertId = result.id
-        conn.query(`INSERT INTO answers (question_id,answer,is_correct) VALUES (?,?,?),(?,?,?),(?,?,?),(?,?,?)`,
-        [questionInsertId, newqa.answers[0].answer, newqa.answer[0].is_correct],
-        [questionInsertId, newqa.answers[1].answer, newqa.answer[1].is_correct],
-        [questionInsertId, newqa.answers[2].answer, newqa.answer[2].is_correct],
-        [questionInsertId, newqa.answers[3].answer, newqa.answer[3].is_correct], 
+            console.log(result)
+        const questionInsertId = result.insertId;
+        console.log(questionInsertId);
+        console.log(newqa.answers[0].answer)
+        console.log(newqa.answers[0].is_correct)
+
+        conn.query(`INSERT INTO answers (question_id, answer, is_correct) VALUES (?,?,?),(?,?,?),(?,?,?),(?,?,?)`,
+        [questionInsertId, newqa.answers[0].answer, newqa.answers[0].is_correct,
+        questionInsertId, newqa.answers[1].answer, newqa.answers[1].is_correct,
+        questionInsertId, newqa.answers[2].answer, newqa.answers[2].is_correct,
+        questionInsertId, newqa.answers[3].answer, newqa.answers[3].is_correct], 
         (err, rows) => {
             if (err) {
                 console.log(err.toString());
