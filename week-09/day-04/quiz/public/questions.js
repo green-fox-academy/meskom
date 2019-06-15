@@ -2,22 +2,37 @@
 const form = document.querySelector("form");
 const parent = document.querySelector(".question-container");
 
-function loadQuestions (){
+function loadQuestions() {
     let xhr = new XMLHttpRequest;
     xhr.open('GET', 'api/questions');
     xhr.onload = data => {
         let questions = JSON.parse(data.target.response);
-        console.log(questions);
+        console.log(questions[0].id);
         questions.forEach((qu) => {
-         let newLi = document.createElement("Li");
-         newLi.innerHTML=qu.question;
-         parent.appendChild(newLi);
+            let newLi = document.createElement("Li");
+            newLi.innerHTML = qu.question;
+            let del = document.createElement('a');
+            let id = qu.id
+            del.innerText = '   -->       delete'
+            del.addEventListener('click', (e) => {
+                e.preventDefault;
+                let delRequest = new XMLHttpRequest;
+                delRequest.open('DELETE', `/api/questions/${id}`);
+                delRequest.onload = data => {
+                    console.log (data);
+                    loadQuestions();
+                }
+                delRequest.send();
+            });
+            newLi.appendChild(del);
+
+            parent.appendChild(newLi);
         });
     }
     xhr.send();
-} 
+}
 window.onload = () => {
-loadQuestions();
+    loadQuestions();
 }
 
 form.addEventListener('submit', (event) => {

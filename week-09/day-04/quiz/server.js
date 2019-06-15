@@ -116,7 +116,7 @@ app.post('/api/questions', (req, res) => {
     });
 });
 
-app.delete('/api/questions/:id', (res, req) => {
+app.delete('/api/questions/:id', (req, res) => {
     let idp = req.params.id;
     console.log(idp);
     conn.query(`DELETE FROM questions WHERE id = ?`, [idp], (err, del_q) => {
