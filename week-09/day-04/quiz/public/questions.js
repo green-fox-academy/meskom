@@ -2,8 +2,12 @@
 const form = document.querySelector("form");
 const parent = document.querySelector(".question-container");
 
+window.onload = () => {
+    loadQuestions();
+
+}
 function loadQuestions() {
-    parent.innerHTML='';
+    parent.innerHTML = '';
     let xhr = new XMLHttpRequest;
     xhr.open('GET', 'api/questions');
     xhr.onload = data => {
@@ -20,7 +24,7 @@ function loadQuestions() {
                 let delRequest = new XMLHttpRequest;
                 delRequest.open('DELETE', `/api/questions/${id}`);
                 delRequest.onload = data => {
-                    console.log (data);
+                    console.log(data);
                     loadQuestions();
                 }
                 delRequest.send();
@@ -31,9 +35,7 @@ function loadQuestions() {
     }
     xhr.send();
 }
-window.onload = () => {
-    loadQuestions();
-}
+
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -52,18 +54,10 @@ function submit() {
     let xhr = new XMLHttpRequest
     xhr.open('POST', 'api/questions');
     xhr.setRequestHeader('Content-Type', 'application/json');
-    // xhr.onload = data => {
-    //     console.log(data)
-    // }
-    //let sendQA = { question: newQuestion, answers: newAnswers }
     xhr.send(JSON.stringify(sendQA));
+    loadQuestions();
+    form.reset();
 }
-
-//console.log(sendQA)
-// console.log(document.querySelector("#a-1").checked? 1 : 0)
-// console.log(document.querySelector("#a-2").checked? 1 : 0)
-// console.log(document.querySelector("#a-3").checked? 1 : 0)
-// console.log(document.querySelector("#a-4").checked? 1 : 0)
 
 
 

@@ -9,9 +9,6 @@ let score = 0;
 window.onload = () => {
     getNewQuestion()
 }
-// function chnColor(ans) {
-//     ans.style.backgroundColor = "red"
-// }
 
 function chkAns(ans) {
     if (ans.value == 1) {
@@ -19,7 +16,7 @@ function chkAns(ans) {
         ans.style.backgroundColor = "green"
         score++
         scoreTag.innerHTML = score;
-        console.log(score)
+        console.log(score);
     } else {
         ans.style.backgroundColor = "red"
     }
@@ -27,12 +24,11 @@ function chkAns(ans) {
 
 function getNewQuestion() {
     const xhr = new XMLHttpRequest();
-
+    
     xhr.open('GET', 'api/game');
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onload = data => {
         let qa = JSON.parse(data.target.response);
-        //console.log('from BE: ', qa);
         document.querySelectorAll(".answer").forEach((button) => {
             button.style.backgroundColor = "powderBlue"
         });
@@ -47,31 +43,33 @@ function getNewQuestion() {
         ans3.value = qa.answers[2].is_correct;
         ans4.value = qa.answers[3].is_correct;
     };
-
     xhr.send();
 }
 allAns.addEventListener('click', (event) => {
     event.preventDefault();
-    //event.stopPropagation();
-
     if (event.target.id === 'a-1') {
         event.preventDefault();
         chkAns(ans1);
-        setTimeout(() => { getNewQuestion() }, 3000);
+        setTimeout(() => {
+            getNewQuestion()
+        }, 3000);
     }
     if (event.target.id === 'a-2') {
-        //setTimeout(() => {chnColor(ans2)}, 1000);
         chkAns(ans2);
-        setTimeout(() => { getNewQuestion() }, 3000);
+        setTimeout(() => {
+            getNewQuestion()
+        }, 3000);
     }
     if (event.target.id === 'a-3') {
-        //chnColor(ans3)
         chkAns(ans3)
-        setTimeout(() => { getNewQuestion() }, 3000);
+        setTimeout(() => {
+            getNewQuestion()
+        }, 3000);
     }
     if (event.target.id === 'a-4') {
-        //chnColor(ans4)
         chkAns(ans4)
-        setTimeout(() => { getNewQuestion() }, 3000);
+        setTimeout(() => {
+            getNewQuestion()
+        }, 3000);
     }
 });

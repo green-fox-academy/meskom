@@ -28,16 +28,13 @@ app.get('/api/game', (req, res) => {
             res.status(500).send('DB error');
             return;
         }
-
         conn.query('SELECT * FROM answers WHERE question_id = ? ', [rows[0].id], (err, ans) => {
             if (err) {
                 res.status(500).send('DB error');
                 return;
             }
-
             rows[0].answers = ans
             res.send(rows[0]);
-
         })
     })
 })
@@ -52,36 +49,6 @@ app.get('/api/questions', (req, res) => {
         res.send(ques);
     });
 });
-// app.post('/api/questions', (req, res) => {
-//     console.log(req.body)
-//     let newQA = req.body
-//     console.log(newQA);
-//     conn.query(`INSERT INTO questions (question) VALUES (?)`,[newQA.question], (err, rows) => {
-//         if (err) {
-//             console.log(err.toString());
-//             res.status(500).send('DB error');
-//             return;
-//         }
-//         console.log(rows)
-        
-//         conn.query(`INSERT INTO answers (question_id,answer,is_correct) VALUES {(?,?,?),(?,?,?),(?,?,?),(?,?,?)]`,
-//             [
-//                 (questionInsertId, newQA.answers[0].answer, newQA.answers[0].is_correct),
-//                 (questionInsertId, newQA.answers[1].answer, newQA.answers[1].is_correct),
-//                 (questionInsertId, newQA.answers[2].answer, newQA.answers[2].is_correct),
-//                 (questionInsertId, newQA.answers[3].answer, newQA.answers[3].is_correct)
-//             ],
-//             (err, qa) => {
-//                 if (err) {
-//                     console.log(err.toString());
-//                     res.status(500).send('DB error');
-//                     return;
-//                 }
-//                 console.log(qa);
-//                 res.sendStatus(200);
-//             })
-//     })
-// })
 
 app.post('/api/questions', (req, res) => {
     let newqa = req.body;
@@ -89,10 +56,8 @@ app.post('/api/questions', (req, res) => {
         if (err) {
             console.log(err.toString());
             res.status(500).send('Database error');
-            return;
         }
         else {
-            console.log(result)
         const questionInsertId = result.insertId;
         console.log(questionInsertId);
         console.log(newqa.answers[0].answer)
@@ -122,18 +87,15 @@ app.delete('/api/questions/:id', (req, res) => {
     conn.query(`DELETE FROM questions WHERE id = ?`, [idp], (err, del_q) => {
         if (err) {
             console.log(err.toString());
-            res.send('Database error');
-            return;
+            res.send('Database error'); //status: 500
         }
         else {
             conn.query(`DELETE FROM answers WHERE question_id = ?`, [idp], (err, del_a) => {
                 if (err) {
                     console.log(err.toString());
-                    res.send('Database error');
-                    return;
-                } else {
-                    //console.log(del_a);
-                    res.send('deleted Q&A')
+                    res.send('Database error'); //status : 500
+                } else {                    
+                    res.send('deleted Q&A') // status: 200
                 }
             });
         }
