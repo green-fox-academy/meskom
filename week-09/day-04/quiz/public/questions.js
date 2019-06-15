@@ -3,6 +3,7 @@ const form = document.querySelector("form");
 const parent = document.querySelector(".question-container");
 
 function loadQuestions() {
+    parent.innerHTML='';
     let xhr = new XMLHttpRequest;
     xhr.open('GET', 'api/questions');
     xhr.onload = data => {
@@ -25,7 +26,6 @@ function loadQuestions() {
                 delRequest.send();
             });
             newLi.appendChild(del);
-
             parent.appendChild(newLi);
         });
     }
