@@ -31,11 +31,10 @@
         }
         const pubParam = urlParams.get('publisher');
         if (pubParam) {
-            url += `?publisher=${pubParam}`
+            url += `?publisher="${pubParam}"`
         }
         let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-        //
+        xhr.open('GET', url, true);    
         xhr.setRequestHeader('Content-Type', 'application/json', 'Access-Control-Allow-Origin', '*');
         //let option = `?category="Technology"`
         xhr.onload = data => {

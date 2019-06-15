@@ -16,7 +16,6 @@
     <script>
         let xhr = new XMLHttpRequest();
         xhr.open('GET', 'https://api.nytimes.com/svc/search/v2/articlesearch.json?q=apollo11&api-key=3RHoD4hQBAB0GbxBS43i1vtPR9R7Getk')
-        xhr.send();
         xhr.onload = data => {
             //let info = JSON.parse(data.target.response)
             //console.log(info);
@@ -24,7 +23,7 @@
             //let doc = [];
             let doc = info.response.docs
             console.log(info);
-            console.log(doc.lenght);//?? not an array??? array-like object..
+            console.log(doc.length);//?? not an array??? array-like object..
             for (let i = 0; i < 3; i++) {
                 let p = document.createElement("p")
                 document.querySelector('.list').appendChild(p);
@@ -39,6 +38,7 @@
                 p.appendChild(div3)
             }
         }
+        xhr.send();
     </script>
 </body>
 
