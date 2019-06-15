@@ -1,9 +1,28 @@
 'use strict';
-const form = document.querySelector("form")
+const form = document.querySelector("form");
+const parent = document.querySelector(".question-container");
+
+function loadQuestions (){
+    let xhr = new XMLHttpRequest;
+    xhr.open('GET', 'api/questions');
+    xhr.onload = data => {
+        let questions = JSON.parse(data.target.response);
+        console.log(questions);
+        questions.forEach((qu) => {
+         let newLi = document.createElement("Li");
+         newLi.innerHTML=qu.question;
+         parent.appendChild(newLi);
+        });
+    }
+    xhr.send();
+} 
+window.onload = () => {
+loadQuestions();
+}
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
-    submit()
+    submit();
 })
 function submit() {
     let newQuestion = document.querySelector("#question").value
@@ -18,9 +37,9 @@ function submit() {
     let xhr = new XMLHttpRequest
     xhr.open('POST', 'api/questions');
     xhr.setRequestHeader('Content-Type', 'application/json');
-    xhr.onload = data => {
-        console.log(data)
-    }
+    // xhr.onload = data => {
+    //     console.log(data)
+    // }
     //let sendQA = { question: newQuestion, answers: newAnswers }
     xhr.send(JSON.stringify(sendQA));
 }
